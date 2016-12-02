@@ -45,7 +45,7 @@ ALTER DATABASE [MSHA] SET NUMERIC_ROUNDABORT OFF
 GO
 ALTER DATABASE [MSHA] SET QUOTED_IDENTIFIER OFF 
 GO
-ALTER DATABASE [MSHA] SET RECURSIVE_TRI GGERS OFF 
+ALTER DATABASE [MSHA] SET RECURSIVE_TRIGGERS OFF 
 GO
 ALTER DATABASE [MSHA] SET  DISABLE_BROKER 
 GO
@@ -577,3 +577,75 @@ CREATE TABLE [dbo].[msha_assssd_violation](
 	[last_action_date] [Date] NULL
 	/*FOREIGN KEY (violation_id) REFERENCES dbo.contractor(violation_id)*/
 )  ON [PRIMARY]
+
+/* Create table MSHA_MINE & MSHA_INSPECTION*/
+IF OBJECT_ID (N'dbo.mhsa_mine', N'U') IS NOT NULL
+DROP TABLE dbo.mhsa_mine;
+GO
+CREATE TABLE [dbo].[mhsa_mine](
+	[assess_ctrl_no] [varchar](20) NULL,
+	[avg_mine_height] [Integer](5) NULL,
+	[avg_annual_empl] [Integer] NULL,
+	[bom_state_cd] [varchar](2) NULL,
+	[c_m_ind] [varchar](1) NULL,
+	[company_type] [varchar](80) NOT NULL,
+	[cong_dist_cd] [varchar](2) NOT NULL,
+	[controller_id] [varchar](7) NULL,
+	[controller_nm] [varchar](72) NULL,
+	[curr_103i_cd] [varchar](2)  NULL,
+	[curr_mine_nm] [varchar](50) NULL,
+	[curr_ownr_beg_dt] [Date] NULL,
+	[curr_stat_cd] [varchar](50) NULL,
+	[curr_stat_dt] [Date] NULL,
+	[current_103i_dt] [Date] NULL,
+	[days_per_week] [Integer](2) NOT NULL,
+	[directions_to_mine] [varchar](300) NOT NULL,
+	[district] [varchar](3) NULL,
+	[employee_cnt] [Integer](5) NULL,
+	[exempt_ind] [varchar](1)  NULL,
+	[fips_cnty_cd] [varchar](3) NULL,
+	[fips_cnty_nm] [varchar](80) NULL,
+	[full_sic_cd] [varchar](6) NULL,
+	[highwall_mnr_ind] [varchar](1) NULL,
+	[hours_per_shift] [Integer](2) NULL,
+	[latitude] [varchar](9) NOT NULL,
+	[longitude] [varchar](10) NOT NULL,
+	[maint_shifts_per_day] [Integer](3) NULL,
+	[methn_librtn] [Integer](9) NULL,
+	[mine_103i_desc] [varchar](80)  NULL,
+	[mine_gas_category_cd] [varchar](20) NULL,
+	[mine_id] [varchar](7) NULL PRIMARY KEY,
+	[mine_miles_ofc] [Integer](5) NULL,
+	[mine_type_cd] [varchar](20) NULL,
+	[miners_rep_ind] [varchar](1) NULL,
+	[multiple_pits_ind] [varchar](1) NOT NULL,
+	[nearest_town] [varchar](30) NOT NULL,
+	[non_prod_pits_cnt] [Integer](5) NULL,
+	[office_cd] [varchar](5)  NULL,
+	[office_name] [varchar](80)  NULL,
+	[oper_id] [varchar](7) NULL,
+	[oper_nm] [varchar](60) NULL,
+	[pillar_rcvry_ind] [varchar](1) NULL,
+	[port_oprn_ind] [varchar](1) NULL,
+	[portable_fips_st_cd] [varchar](2) NULL,
+	[primary_canvass_cd] [varchar](20) NOT NULL,
+	[primary_canvass_desc] [varchar](20) NOT NULL,
+	[primary_sic_cd_grpt] [varchar](80) NULL,
+	[primary_sic_cd_sfx] [varchar](2)  NULL,
+	[prod_pits_cnt] [Integer](3)  NULL,
+	[prod_shifts_per_day] [Integer](3) NULL,
+	[oper_nm] [varchar](60) NULL,
+	[safety_committee_ind] [varchar](1) NULL,
+	[secondary_canvass_cd] [varchar](20) NULL,
+	[secondary_canvass_desc] [varchar](20) NULL,
+	[secondary_sic_cd] [varchar](6) NOT NULL,
+	[secondary_sic_cd_grp] [varchar](4) NOT NULL,
+	[secondary_sic_cd_sfx] [varchar](2) NULL,
+	[secondary_sic_desc] [varchar](80)  NULL,
+	[sic_desc] [varchar](80)  NULL,
+	[state_abbr] [varchar] (80) NULL,
+	[tail_pond_cnt] [Integer] (3) NULL,
+	FOREIGN KEY (cntctr_id) REFERENCES Contractor(cntctr_id)
+)  ON [PRIMARY]
+
+
